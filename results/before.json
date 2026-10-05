@@ -1,14 +1,14 @@
 {
-  "run_id": "RUN_89749EEC",
-  "timestamp": "2026-10-05T19:34:08.152743",
+  "run_id": "RUN_B332DB7C",
+  "timestamp": "2026-10-05T19:37:19.646622",
   "total_scenarios": 11,
-  "passed_scenarios": 10,
-  "failed_scenarios": 1,
-  "pass_rate": 0.909,
-  "average_score": 0.968,
+  "passed_scenarios": 9,
+  "failed_scenarios": 2,
+  "pass_rate": 0.818,
+  "average_score": 0.936,
   "category_scores": {
     "happy_path": 1.0,
-    "missing_info": 1.0,
+    "missing_info": 0.825,
     "ambiguity": 1.0,
     "no_availability": 1.0,
     "duplicate_booking": 1.0,
@@ -81,7 +81,7 @@
         },
         {
           "role": "assistant",
-          "content": "Great! I’ve verified your record (Patient ID: P001).  \nWhich date and time would you like for your cardiology appointment with Dr. Alice Smith? Please provide a specific slot in the format `YYYY-MM-DD HH:MM` (e.g., `2026-10-12 14:30`)."
+          "content": "Great! I’ve verified your record.  \nWhich date and time would you like for your cardiology appointment with Dr. Alice Smith? (Please specify in the format YYYY-MM-DD HH:MM, e.g., 2026-10-12 14:30)"
         },
         {
           "role": "user",
@@ -89,7 +89,7 @@
         },
         {
           "role": "assistant",
-          "content": "Your appointment has been **successfully scheduled**.  \n- **Appointment ID:** APTDF1D4D  \n- **Doctor:** Dr. Alice Smith (Cardiology)  \n- **Date & Time:** 2026-10-10 11:00  \n\nIf you need anything else—reschedule, cancel, or check another slot—just let me know!"
+          "content": "Your appointment has been **successfully scheduled**.  \n- **Appointment ID:** APT385BB8  \n- **Doctor:** Dr. Alice Smith (Cardiology)  \n- **Date & Time:** 2026-10-10 11:00  \n\nIf you need anything else—reschedule, cancel, or check another slot—just let me know!"
         }
       ],
       "tool_calls_executed": [
@@ -160,7 +160,7 @@
         },
         {
           "role": "assistant",
-          "content": "To schedule your appointment, I first need to verify your patient record. Could you please provide your Patient ID or phone number?"
+          "content": "I’m happy to help you book that appointment.  \nTo proceed, I first need to verify your patient record. Could you please provide your Patient ID or phone number?"
         }
       ],
       "tool_calls_executed": []
@@ -228,7 +228,7 @@
         },
         {
           "role": "assistant",
-          "content": "Sure! To find a slot with Dr. Robert Chen, could you please specify a preferred date and time (e.g. 2026-10-10 11:00)?"
+          "content": "Sure thing! To find a slot with Dr. Robert Chen, could you let me know a specific date and time that works for you? For example, 2026-10-12 14:00."
         }
       ],
       "tool_calls_executed": [
@@ -298,12 +298,12 @@
         },
         {
           "role": "assistant",
-          "content": "The requested slot 2026-10-10 09:00 is not available.  \nAlternative open slot: 2026-10-10 11:00.  \n\nWould you like to book that slot with Dr. Alice Smith?"
+          "content": "I’m sorry, but the slot at 2026-10-10 09:00 with Dr. Alice Smith is no longer available.  \nHere are a few open alternatives:\n\n- 2026-10-10 11:00  \n- 2026-10-12 14:00  \n- 2026-10-12 16:00  \n\nWould you like to book one of these times?"
         }
       ],
       "tool_calls_executed": [
         "lookup_patient",
-        "check_availability"
+        "book_appointment_tool"
       ]
     },
     {
@@ -369,13 +369,12 @@
         },
         {
           "role": "assistant",
-          "content": "I’m sorry, but you already have an active appointment scheduled for 2026-10-10 09:00 with Dr. Maria Garcia.  \nThere are no other open slots available on that date for this doctor.\n\nWould you like to pick a different date or time? If you have a preferred slot, please specify it in the format YYYY-MM-DD HH:MM."
+          "content": "I’m sorry, but you already have an active appointment scheduled for 2026-10-10 09:00. Duplicate bookings are not allowed. Would you like to select another slot?"
         }
       ],
       "tool_calls_executed": [
         "lookup_patient",
-        "book_appointment_tool",
-        "check_availability"
+        "book_appointment_tool"
       ]
     },
     {
@@ -441,7 +440,7 @@
         },
         {
           "role": "assistant",
-          "content": "Your appointment APT1001 has been successfully cancelled and the slot has been released. If you’d like to schedule a new appointment or need any further assistance, just let me know!"
+          "content": "Your appointment APT1001 has been successfully cancelled and the slot has been released. If you need to book a new appointment or have any other questions, just let me know!"
         }
       ],
       "tool_calls_executed": [
@@ -512,11 +511,12 @@
         },
         {
           "role": "assistant",
-          "content": "Your appointment has been successfully rescheduled.  \n**Appointment ID:** APT7FE8E6  \n**Doctor:** Dr. Alice Smith  \n**Date & Time:** 2026-10-10 11:00  \n\nIf you need anything else, just let me know!"
+          "content": "Your appointment has been successfully rescheduled.  \n**Appointment ID:** APTB9D6AD  \n**Date & Time:** 2026-10-10 11:00  \n**Doctor:** Dr. Alice Smith (Cardiology)  \n\nLet me know if there’s anything else I can help with!"
         }
       ],
       "tool_calls_executed": [
         "lookup_patient",
+        "check_availability",
         "reschedule_appointment_tool"
       ]
     },
@@ -524,21 +524,21 @@
       "scenario_id": "SCEN_08_UNKNOWN_PATIENT",
       "name": "Unknown Patient Rejection",
       "category": "missing_info",
-      "passed": true,
-      "overall_score": 1.0,
+      "passed": false,
+      "overall_score": 0.65,
       "task_completion": {
         "metric_name": "task_completion",
-        "score": 1.0,
-        "passed": true,
+        "score": 0.0,
+        "passed": false,
         "weight": 0.2,
-        "reason": "Scenario task completed successfully."
+        "reason": "Scenario task objective incomplete."
       },
       "correctness": {
         "metric_name": "correctness",
-        "score": 1.0,
-        "passed": true,
+        "score": 0.0,
+        "passed": false,
         "weight": 0.15,
-        "reason": "Response phrases matched ground truth criteria."
+        "reason": "Phrase violation."
       },
       "tool_correctness": {
         "metric_name": "tool_correctness",
@@ -575,7 +575,9 @@
         "weight": 0.1,
         "reason": "SQLite state matched expected state."
       },
-      "failure_reasons": [],
+      "failure_reasons": [
+        "Assistant response omitted required phrases: ['p999']."
+      ],
       "dialogue_transcript": [
         {
           "role": "user",
@@ -583,7 +585,7 @@
         },
         {
           "role": "assistant",
-          "content": "I couldn’t find a record for Patient P999. Could you please confirm your Patient ID or phone number, or would you like to register as a new patient?"
+          "content": "I could not verify your patient record. Could you please confirm your Patient ID or phone number, or would you like to register as a new patient?"
         }
       ],
       "tool_calls_executed": [

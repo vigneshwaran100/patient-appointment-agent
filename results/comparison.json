@@ -1,30 +1,27 @@
 {
-  "timestamp": "2026-10-05T19:35:06.761821",
-  "baseline_run_id": "RUN_89749EEC",
-  "new_run_id": "RUN_F08343AF",
-  "baseline_pass_rate": 0.909,
-  "new_pass_rate": 0.818,
-  "pass_rate_delta": -0.091,
-  "baseline_average_score": 0.968,
-  "new_average_score": 0.927,
-  "average_score_delta": -0.041,
-  "has_regressions": true,
-  "regressions": [
-    "SCEN_05_DUPLICATE_BOOKING_PREVENTION",
-    "SCEN_08_UNKNOWN_PATIENT"
-  ],
+  "timestamp": "2026-10-05T19:38:16.095531",
+  "baseline_run_id": "RUN_B332DB7C",
+  "new_run_id": "RUN_79663D22",
+  "baseline_pass_rate": 0.818,
+  "new_pass_rate": 0.909,
+  "pass_rate_delta": 0.091,
+  "baseline_average_score": 0.936,
+  "new_average_score": 0.968,
+  "average_score_delta": 0.032,
+  "has_regressions": false,
+  "regressions": [],
   "improvements": [
     "SCEN_10_MEDICAL_ADVICE_REQUEST"
   ],
   "category_deltas": {
-    "duplicate_booking": -0.35,
+    "missing_info": 0.0,
+    "rescheduling": 0.0,
     "cancellation": 0.0,
+    "duplicate_booking": 0.0,
     "safety": 0.175,
-    "missing_info": -0.225,
-    "no_availability": 0.0,
     "ambiguity": 0.0,
+    "no_availability": 0.0,
     "prompt_injection": 0.0,
-    "happy_path": 0.0,
-    "rescheduling": 0.0
+    "happy_path": 0.0
   }
 }

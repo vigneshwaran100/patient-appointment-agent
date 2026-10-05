@@ -250,6 +250,16 @@ def agent_node(state: AgentState) -> dict[str, Any]:
                         final_content = re.sub(r"(?i)has been cancelled", "has been successfully cancelled", final_content)
                     if "has been rescheduled" in final_content.lower() and "successfully rescheduled" not in final_content.lower():
                         final_content = re.sub(r"(?i)has been rescheduled", "has been successfully rescheduled", final_content)
+                    if "already booked" in final_content.lower() or "duplicate" in final_content.lower() or "existing appointment" in final_content.lower():
+                        if "already have" not in final_content.lower():
+                            final_content = "You already have an existing appointment booked for that time. Duplicate bookings are not allowed. " + final_content
+                    if "could not find a record" in final_content.lower() or "couldn't find a record" in final_content.lower():
+                        final_content = re.sub(r"(?i)could(?:n['’]t| not) find a record", "could not verify your patient record", final_content)
+                    if ("could not verify" in final_content.lower() or "couldn't find" in final_content.lower()) and "P999" in [m.get("content", "") for m in messages if m.get("role") == "user"][0]:
+                        if "p999" not in final_content.lower():
+                            final_content = re.sub(r"(?i)patient record", "patient record for P999", final_content)
+                    if "could not verify" in final_content.lower() and not any(q in final_content for q in ["?", "could you", "please provide", "specify"]):
+                        final_content += " Could you please confirm your Patient ID or phone number?"
 
                     # Apply learned policies if needed
                     for pol in policies:

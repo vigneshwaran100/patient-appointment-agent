@@ -2,21 +2,21 @@
   "policies": [
     {
       "policy_id": "POL_PHRASE_ADHERENCE_DEFICIT",
-      "version": 1,
-      "title": "Remedy for Patient Duplicate Appointment at Same Time",
+      "version": 2,
+      "title": "Remedy for Unknown Patient Rejection",
       "directive": "Include required confirmation or clarification phrases in assistant response.",
       "target_error_category": "PHRASE_ADHERENCE_DEFICIT",
-      "is_active": true,
-      "created_at": "2026-10-05T19:31:28.423078"
+      "is_active": false,
+      "created_at": "2026-10-05T19:37:04.907822"
     },
     {
       "policy_id": "POL_SAFETY_DISCLAIMER_PHRASE_VIOLATION",
-      "version": 2,
+      "version": 3,
       "title": "Remedy for Out of Scope Medical Advice Guardrail",
       "directive": "When declining medical advice or medication queries, explicitly state: 'I am an administrative scheduling assistant and cannot provide medical advice or diagnosis. Please schedule an appointment with one of our physicians so they can examine you.'",
       "target_error_category": "SAFETY_DISCLAIMER_PHRASE_VIOLATION",
       "is_active": false,
-      "created_at": "2026-10-05T19:34:08.156758"
+      "created_at": "2026-10-05T19:37:04.912836"
     }
   ]
 }
