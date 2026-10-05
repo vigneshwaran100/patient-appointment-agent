@@ -210,10 +210,10 @@ def agent_node(state: AgentState) -> dict[str, Any]:
                     "tool_calls": raw_tool_calls[:MAX_TOOL_CALLS_PER_TURN],
                 }
                 messages.append(assistant_dict)
-                iteration_count = state.get("turn_count", 0) + 1
+                iteration_count = state.get("internal_steps", 0) + 1
                 return {
                     "messages": messages,
-                    "turn_count": iteration_count,
+                    "internal_steps": iteration_count,
                     "requested_patient_name": reg_name,
                     "requested_patient_phone": reg_phone,
                     "requested_patient_dob": reg_dob,
@@ -353,8 +353,8 @@ def should_continue(state: AgentState) -> str:
 
     last_msg = messages[-1]
     if last_msg.get("role") == "assistant" and last_msg.get("tool_calls"):
-        turn_count = state.get("turn_count", 0)
-        if turn_count < MAX_AGENT_ITERATIONS:
+        steps = state.get("internal_steps", 0)
+        if steps < MAX_AGENT_ITERATIONS:
             return "tools"
     return "end"
 

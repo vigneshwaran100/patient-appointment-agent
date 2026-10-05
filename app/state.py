@@ -253,5 +253,6 @@ class AgentState(TypedDict, total=False):
     # Dynamic policies & tracking
     active_policies: list[str]
     turn_count: int
+    internal_steps: int
     execution_trace: list[dict[str, Any]]
     errors: list[str]

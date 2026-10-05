@@ -103,6 +103,7 @@ class SchedulingAgent:
             }
         )
         self.conversation_state["turn_count"] = self.conversation_state.get("turn_count", 0) + 1
+        self.conversation_state["internal_steps"] = 0
 
         # Clear per-turn transient tool results
         self.conversation_state["last_booking_result"] = None
