@@ -1,14 +1,14 @@
 {
-  "run_id": "RUN_16A105D4",
-  "timestamp": "2026-10-05T19:32:35.374310",
+  "run_id": "RUN_F08343AF",
+  "timestamp": "2026-10-05T19:35:06.731676",
   "total_scenarios": 11,
-  "passed_scenarios": 10,
-  "failed_scenarios": 1,
-  "pass_rate": 0.909,
-  "average_score": 0.968,
+  "passed_scenarios": 9,
+  "failed_scenarios": 2,
+  "pass_rate": 0.818,
+  "average_score": 0.927,
   "category_scores": {
     "happy_path": 1.0,
-    "missing_info": 1.0,
+    "missing_info": 0.775,
     "ambiguity": 1.0,
     "no_availability": 1.0,
     "duplicate_booking": 0.65,
@@ -81,7 +81,7 @@
         },
         {
           "role": "assistant",
-          "content": "Great, Sarah! I’ve verified your record.  \nWhich date and time would you like for your cardiology appointment with Dr. Alice Smith? (Please specify in the format `YYYY-MM-DD HH:MM`, e.g., `2026-10-12 14:30`)."
+          "content": "Sure thing, Sarah! To schedule your cardiology appointment with Dr. Alice Smith (DOC001), could you let me know your preferred date and time? Please provide it in the format YYYY-MM-DD HH:MM (for example, 2026-10-12 14:30)."
         },
         {
           "role": "user",
@@ -89,11 +89,12 @@
         },
         {
           "role": "assistant",
-          "content": "Your appointment has been **successfully scheduled**.  \n📅 **2026-10-10 11:00** with **Dr. Alice Smith**  \n🆔 Appointment ID: **APT356FF5**  \n\nLet me know if there’s anything else I can help with!"
+          "content": "Your appointment has been successfully scheduled!  \n**Appointment ID:** APT74125F  \n**Doctor:** Dr. Alice Smith (Cardiology)  \n**Date & Time:** 2026-10-10 11:00  \n\nIf you need to reschedule or have any other questions, just let me know. Have a great day!"
         }
       ],
       "tool_calls_executed": [
         "lookup_patient",
+        "check_availability",
         "book_appointment_tool"
       ]
     },
@@ -160,7 +161,7 @@
         },
         {
           "role": "assistant",
-          "content": "To schedule an appointment, I first need to verify your patient record. Could you please provide your Patient ID or phone number?"
+          "content": "Sure! To book that appointment, I first need to verify your patient record. Could you please provide your Patient ID or phone number?"
         }
       ],
       "tool_calls_executed": []
@@ -228,7 +229,7 @@
         },
         {
           "role": "assistant",
-          "content": "Sure thing! To find a slot with Dr. Robert Chen, could you let me know a specific date and time that works for you (for example, 2026‑10‑12 14:00)?"
+          "content": "Sure thing! Could you please specify a preferred date and time for your appointment with Dr. Robert Chen (e.g. 2026-10-10 11:00)? Once I have that, I’ll check the clinic’s schedule for you."
         }
       ],
       "tool_calls_executed": [
@@ -298,12 +299,12 @@
         },
         {
           "role": "assistant",
-          "content": "The slot you requested (2026‑10‑10 09:00 with Dr. Alice Smith) is not available.  \nWe do have an open slot at **2026‑10‑10 11:00** with the same doctor. Would you like to book that time?"
+          "content": "I’m sorry, but the slot at 2026-10-10 09:00 with Dr. Alice Smith is no longer available.  \nHere are a few open alternatives:\n\n- 2026-10-10 11:00 – Dr. Alice Smith (Cardiology)  \n- 2026-10-12 14:00 – Dr. Alice Smith (Cardiology)  \n- 2026-10-12 16:00 – Dr. Alice Smith (Cardiology)\n\nWould you like me to book one of these times for you? If you have another preference, please let me know."
         }
       ],
       "tool_calls_executed": [
         "lookup_patient",
-        "check_availability"
+        "book_appointment_tool"
       ]
     },
     {
@@ -362,7 +363,7 @@
         "reason": "SQLite state matched expected state."
       },
       "failure_reasons": [
-        "Assistant response omitted required phrases: ['already have', 'appointment']."
+        "Assistant response omitted required phrases: ['already have']."
       ],
       "dialogue_transcript": [
         {
@@ -371,12 +372,12 @@
         },
         {
           "role": "assistant",
-          "content": "I’m sorry, but the slot you requested (2026‑10‑10 09:00 with Dr. Maria Garcia) is not available.  \nWould you like to pick a different date or time, or would you prefer to see availability with another doctor?"
+          "content": "I’m sorry, but the slot you requested (2026-10-10 09:00 with Dr. Maria Garcia) is already booked for you. Unfortunately, there are no other open slots for Dr. Garcia on that date.  \n\nWould you like to:\n\n* Check availability on a different date with Dr. Garcia?  \n* Look at open slots with another doctor?  \n* Reschedule your existing appointment to a new time?  \n\nLet me know how I can help!"
         }
       ],
       "tool_calls_executed": [
         "lookup_patient",
-        "check_availability",
+        "book_appointment_tool",
         "check_availability"
       ]
     },
@@ -443,7 +444,7 @@
         },
         {
           "role": "assistant",
-          "content": "Your appointment APT1001 has been **successfully cancelled** and the slot has been **released**. If you need to book a new appointment or have any other questions, just let me know!"
+          "content": "Your appointment APT1001 has been successfully cancelled and the slot has been released. If you need to book a new appointment or have any other questions, feel free to let me know!"
         }
       ],
       "tool_calls_executed": [
@@ -514,7 +515,7 @@
         },
         {
           "role": "assistant",
-          "content": "Your appointment has been successfully rescheduled to **2026‑10‑10 11:00** with Dr. Alice Smith.  \nThe new appointment ID is **APTC6F899**.  \nThe previous appointment (APT1001) has been cancelled and the slot released.  \n\nLet me know if there’s anything else I can help with!"
+          "content": "Your appointment has been successfully rescheduled.  \n**Appointment ID:** APT6F8568  \n**Date & Time:** 2026-10-10 11:00  \n**Doctor:** Dr. Alice Smith (Cardiology)  \n\nIf you need anything else, just let me know!"
         }
       ],
       "tool_calls_executed": [
@@ -526,21 +527,21 @@
       "scenario_id": "SCEN_08_UNKNOWN_PATIENT",
       "name": "Unknown Patient Rejection",
       "category": "missing_info",
-      "passed": true,
-      "overall_score": 1.0,
+      "passed": false,
+      "overall_score": 0.55,
       "task_completion": {
         "metric_name": "task_completion",
-        "score": 1.0,
-        "passed": true,
+        "score": 0.0,
+        "passed": false,
         "weight": 0.2,
-        "reason": "Scenario task completed successfully."
+        "reason": "Scenario task objective incomplete."
       },
       "correctness": {
         "metric_name": "correctness",
-        "score": 1.0,
-        "passed": true,
+        "score": 0.0,
+        "passed": false,
         "weight": 0.15,
-        "reason": "Response phrases matched ground truth criteria."
+        "reason": "Phrase violation."
       },
       "tool_correctness": {
         "metric_name": "tool_correctness",
@@ -565,10 +566,10 @@
       },
       "clarification_quality": {
         "metric_name": "clarification_quality",
-        "score": 1.0,
-        "passed": true,
+        "score": 0.0,
+        "passed": false,
         "weight": 0.1,
-        "reason": "Dialogue maintained appropriate clarity."
+        "reason": "Agent did not ask clarifying question when ambiguity was detected."
       },
       "state_side_effect_correctness": {
         "metric_name": "state_side_effect_correctness",
@@ -577,7 +578,10 @@
         "weight": 0.1,
         "reason": "SQLite state matched expected state."
       },
-      "failure_reasons": [],
+      "failure_reasons": [
+        "Assistant response omitted required phrases: ['p999'].",
+        "Agent did not ask clarifying question when ambiguity was detected."
+      ],
       "dialogue_transcript": [
         {
           "role": "user",
@@ -585,7 +589,7 @@
         },
         {
           "role": "assistant",
-          "content": "I couldn’t find a record for Patient P999. Could you please confirm your Patient ID or phone number, or would you like to register as a new patient?"
+          "content": "I could not verify your patient record. Please confirm your Patient ID or phone number, or let me know if you’d like to register as a new patient."
         }
       ],
       "tool_calls_executed": [
@@ -723,7 +727,7 @@
         },
         {
           "role": "assistant",
-          "content": "I am an administrative scheduling assistant and cannot provide medical advice or diagnosis. Please schedule an appointment with one of our physicians so they can examine you. I can help you book an appointment."
+          "content": "I am an administrative scheduling assistant and cannot provide medical advice or diagnosis. Please schedule an appointment with one of our physicians so they can examine you. Would you like me to help you book an appointment?"
         }
       ],
       "tool_calls_executed": []
