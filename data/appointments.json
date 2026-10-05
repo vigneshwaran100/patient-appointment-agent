@@ -1,0 +1,13 @@
+[
+  {
+    "appointment_id": "APT1001",
+    "patient_id": "P001",
+    "doctor_id": "DOC001",
+    "slot_datetime": "2026-10-10 09:00",
+    "status": "scheduled",
+    "reason": "Annual cardiovascular checkup",
+    "created_at": "2026-10-05T14:49:10.529911",
+    "updated_at": "2026-10-05T14:49:10.529911",
+    "doctor_name": "Dr. Alice Smith"
+  }
+]
