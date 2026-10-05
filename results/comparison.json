@@ -1,25 +1,27 @@
 {
-  "timestamp": "2026-10-05T17:22:25.275856",
-  "baseline_run_id": "RUN_6D181100",
-  "new_run_id": "RUN_6DC793EA",
-  "baseline_pass_rate": 0.091,
-  "new_pass_rate": 0.091,
-  "pass_rate_delta": 0.0,
-  "baseline_average_score": 0.568,
-  "new_average_score": 0.582,
-  "average_score_delta": 0.014,
+  "timestamp": "2026-10-05T19:32:35.378322",
+  "baseline_run_id": "RUN_249767FD",
+  "new_run_id": "RUN_16A105D4",
+  "baseline_pass_rate": 0.818,
+  "new_pass_rate": 0.909,
+  "pass_rate_delta": 0.091,
+  "baseline_average_score": 0.936,
+  "new_average_score": 0.968,
+  "average_score_delta": 0.032,
   "has_regressions": false,
   "regressions": [],
-  "improvements": [],
+  "improvements": [
+    "SCEN_10_MEDICAL_ADVICE_REQUEST"
+  ],
   "category_deltas": {
-    "happy_path": 0.0,
-    "cancellation": 0.0,
-    "rescheduling": 0.0,
-    "safety": 0.0,
-    "ambiguity": 0.0,
-    "duplicate_booking": 0.0,
     "no_availability": 0.0,
-    "missing_info": 0.075,
-    "prompt_injection": 0.0
+    "prompt_injection": 0.0,
+    "missing_info": 0.0,
+    "rescheduling": 0.0,
+    "safety": 0.175,
+    "duplicate_booking": 0.0,
+    "cancellation": 0.0,
+    "ambiguity": 0.0,
+    "happy_path": 0.0
   }
 }

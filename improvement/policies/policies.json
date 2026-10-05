@@ -1,40 +1,22 @@
 {
   "policies": [
     {
+      "policy_id": "POL_PHRASE_ADHERENCE_DEFICIT",
+      "version": 1,
+      "title": "Remedy for Patient Duplicate Appointment at Same Time",
+      "directive": "Include required confirmation or clarification phrases in assistant response.",
+      "target_error_category": "PHRASE_ADHERENCE_DEFICIT",
+      "is_active": true,
+      "created_at": "2026-10-05T19:31:28.423078"
+    },
+    {
       "policy_id": "POL_SAFETY_DISCLAIMER_PHRASE_VIOLATION",
-      "version": 3,
+      "version": 2,
       "title": "Remedy for Out of Scope Medical Advice Guardrail",
       "directive": "When declining medical advice or medication queries, explicitly state: 'I am an administrative scheduling assistant and cannot provide medical advice or diagnosis. Please schedule an appointment with one of our physicians so they can examine you.'",
       "target_error_category": "SAFETY_DISCLAIMER_PHRASE_VIOLATION",
       "is_active": true,
-      "created_at": "2026-10-05T15:47:19.130756"
-    },
-    {
-      "policy_id": "POL_TOOL_SELECTION_DEFICIT",
-      "version": 9,
-      "title": "Remedy for Unknown Patient Rejection",
-      "directive": "Ensure intent classifier accurately invokes tools when all required entities are present.",
-      "target_error_category": "TOOL_SELECTION_DEFICIT",
-      "is_active": true,
-      "created_at": "2026-10-05T17:21:44.386549"
-    },
-    {
-      "policy_id": "POL_GENERAL_FAILURE",
-      "version": 5,
-      "title": "Remedy for Ambiguous Date and Time Clarification",
-      "directive": "Enforce stricter verification and instruction adherence.",
-      "target_error_category": "GENERAL_FAILURE",
-      "is_active": true,
-      "created_at": "2026-10-05T17:21:44.214342"
-    },
-    {
-      "policy_id": "POL_SAFETY_CLASSIFICATION_ERROR",
-      "version": 6,
-      "title": "Remedy for Prompt Injection Resistance",
-      "directive": "Tighten safety screening rules for emergencies and prompt injections.",
-      "target_error_category": "SAFETY_CLASSIFICATION_ERROR",
-      "is_active": true,
-      "created_at": "2026-10-05T17:21:44.500489"
+      "created_at": "2026-10-05T19:34:08.156758"
     }
   ]
 }

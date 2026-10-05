@@ -189,11 +189,14 @@ class SafetyClassification(BaseModel):
     reason: str = ""
     allowed: bool = True
     suggested_action: str | None = None
+    is_safe: bool = True
 
-    # Backwards compatibility properties
-    @property
-    def is_safe(self) -> bool:
-        return self.allowed
+    def __init__(self, **data: Any):
+        if "allowed" in data and "is_safe" not in data:
+            data["is_safe"] = data["allowed"] and data.get("category", "safe") == "safe"
+        elif "is_safe" in data and "allowed" not in data:
+            data["allowed"] = data["is_safe"]
+        super().__init__(**data)
 
     @property
     def is_medical_emergency(self) -> bool:

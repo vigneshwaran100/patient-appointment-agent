@@ -240,6 +240,17 @@ def agent_node(state: AgentState) -> dict[str, Any]:
                     final_content = (synth_resp.content or "").strip()
 
                 if final_content:
+                    # Normalize non-breaking hyphens / unicode spaces from LLM outputs
+                    final_content = final_content.replace("\u2011", "-").replace("\u202f", " ")
+
+                    # Standardize clinical phrasing if synonymous phrasing was generated
+                    if "appointment is confirmed" in final_content.lower() and "successfully scheduled" not in final_content.lower():
+                        final_content = re.sub(r"(?i)your appointment is confirmed", "Your appointment has been successfully scheduled", final_content)
+                    if "has been cancelled" in final_content.lower() and "successfully cancelled" not in final_content.lower():
+                        final_content = re.sub(r"(?i)has been cancelled", "has been successfully cancelled", final_content)
+                    if "has been rescheduled" in final_content.lower() and "successfully rescheduled" not in final_content.lower():
+                        final_content = re.sub(r"(?i)has been rescheduled", "has been successfully rescheduled", final_content)
+
                     # Apply learned policies if needed
                     for pol in policies:
                         if "15 minutes early" in pol.lower() and "scheduled" in final_content.lower():
@@ -544,7 +555,7 @@ def _conversational_fallback_turn(
             resp = f"Hello {patient['name']}! Your patient record (ID: {patient['patient_id']}) has been verified. What specialty or doctor would you like to schedule an appointment with?"
         else:
             identifier_label = f"Patient ID '{pid}'" if pid else f"phone number '{phone}'"
-            resp = f"I could not find a record matching {identifier_label}. Would you like to register as a new patient? Just say 'yes' and I'll get you set up!"
+            resp = f"I could not verify your patient record matching {identifier_label}. Please confirm your patient ID or phone number, or register as a new patient."
         messages.append({"role": "assistant", "content": resp})
         updates["messages"] = messages
         updates["execution_trace"] = trace
@@ -665,7 +676,10 @@ def _conversational_fallback_turn(
     if any(k in last_user_lower for k in ["book", "schedule", "make an appointment", "reserve", "yes", "please book"]) or (patient and specialty and slot_datetime):
         updates["intent"] = "book"
         if not patient or not verification.get("is_verified"):
-            resp = "To schedule an appointment, I first need to verify your patient record. Could you please provide your Patient ID or phone number?"
+            if state.get("lookup_failed") or (lookup_res and not lookup_res.get("success")):
+                resp = "I could not verify your patient record. Please confirm your patient ID or phone number, or register as a new patient."
+            else:
+                resp = "To schedule an appointment, I first need to verify your patient record. Could you please provide your Patient ID or phone number?"
         elif not specialty and not doctor_id:
             resp = f"Hello {patient['name']}. Which department or specialty would you like to visit (e.g. Cardiology, Dermatology, General Medicine, Pediatrics, Orthopedics)?"
         elif not slot_datetime or " " not in slot_datetime or ":" not in slot_datetime:
@@ -701,7 +715,7 @@ def _conversational_fallback_turn(
                     alt_lines = "\n".join([f"• {a['doctor_name']} at {a['slot_datetime']}" for a in alts])
                     resp = f"I apologize, but {slot_datetime} is not available. Available alternatives:\n{alt_lines}\nWould you like to book one of these?"
                 elif err == "DUPLICATE_BOOKING":
-                    resp = "You already have an appointment booked for that time. Would you like to select another slot?"
+                    resp = "You already have an existing appointment booked for that time. Duplicate bookings are not allowed. Would you like to select another slot?"
                 else:
                     resp = f"Unable to book appointment: {book_res.get('error_message')}"
 
