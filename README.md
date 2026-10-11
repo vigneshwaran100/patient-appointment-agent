@@ -1,4 +1,4 @@
-# 🏥 2Care AI  — The AI Receptionist for Healthcare
+# 🏥 MedicalCare AI  — The AI Receptionist for Healthcare
 
 A production-grade, stateful, multi-turn AI healthcare receptionist agent that handles patient intake, registrations, scheduling, rescheduling, cancellations, and doctor availability using scoped tools with deterministic SQLite state, rigorous evaluation harness, and an autonomous self-improvement loop.
 
